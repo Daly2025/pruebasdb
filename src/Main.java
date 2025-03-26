@@ -8,7 +8,16 @@ public class Main {
 
         try {
             Connection conexion = DatabaseConnection.getConnection();
+
+            //Inserto nuevo actor
+            String insert="insert into actor (first_name,last_name) values (?,?)";
+            PreparedStatement stmInsert=conexion.prepareStatement(insert);
+            stmInsert.setString(1,"Lidia");
+            stmInsert.setString(2,"Fernandez");
+            stmInsert.executeUpdate();
+
             String sql="select * from actor";
+
             PreparedStatement stm =conexion.prepareStatement(sql);
             ResultSet resultSet=stm.executeQuery();
             while (resultSet.next()){
